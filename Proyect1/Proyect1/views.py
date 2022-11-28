@@ -26,9 +26,19 @@ def prueba_four(request, edad, ano):
 
 def prueba_five(request):
     #Importamos html desde una plantilla
-    doc_externo = open("C:/Users/Alejandro Alonso/OneDrive - Alejandro/Escritorio/Python\Django/Proyect1/Proyect1/templates/prueba_five.html")
+    doc_externo = open("C:/Users/Alejandro Alonso/OneDrive - Alejandro/Escritorio/Desarrollo/Python/Django/Proyect1/Proyect1/templates/prueba_five.html")
     plt = Template(doc_externo.read())
     doc_externo.close()
     ctx = Context()
+    documento = plt.render(ctx)
+    return HttpResponse(documento)
+
+def prueba_six(request):
+    #Importamos html desde una plantilla y le pasamos variables que influyen en el html
+    doc_externo = open("C:/Users/Alejandro Alonso/OneDrive - Alejandro/Escritorio/Desarrollo/Python/Django/Proyect1/Proyect1/templates/prueba_six.html")
+    nombre = "Alejandro"
+    plt = Template(doc_externo.read())
+    doc_externo.close()
+    ctx = Context({"nombre":nombre})
     documento = plt.render(ctx)
     return HttpResponse(documento)
