@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import Template, Context
 import datetime
 
+
 def index(request):
     return HttpResponse("Hola")
 
@@ -37,8 +38,23 @@ def prueba_six(request):
     #Importamos html desde una plantilla y le pasamos variables que influyen en el html
     doc_externo = open("C:/Users/Alejandro Alonso/OneDrive - Alejandro/Escritorio/Desarrollo/Python/Django/Proyect1/Proyect1/templates/prueba_six.html")
     nombre = "Alejandro"
+    apellido = "Alonso"
     plt = Template(doc_externo.read())
     doc_externo.close()
-    ctx = Context({"nombre":nombre})
+    ctx = Context({"nombre":nombre, "apellido": apellido})
+    documento = plt.render(ctx)
+    return HttpResponse(documento)
+
+class Usuario():
+    def __init__(self, name, apellido):
+        self.name = name
+        self.apellido = apellido
+
+def prueba_seven(request):
+    user = Usuario("Carlos", "Alonso")
+    doc_externo = open("C:/Users/Alejandro Alonso/OneDrive - Alejandro/Escritorio/Desarrollo/Python/Django/Proyect1/Proyect1/templates/prueba_seven.html")
+    plt = Template(doc_externo.read())
+    doc_externo.close()
+    ctx = Context({"nombre":user.name, "apellido": user.apellido})
     documento = plt.render(ctx)
     return HttpResponse(documento)
