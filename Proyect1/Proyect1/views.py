@@ -58,3 +58,47 @@ def prueba_seven(request):
     ctx = Context({"nombre":user.name, "apellido": user.apellido})
     documento = plt.render(ctx)
     return HttpResponse(documento)
+
+def prueba_eight(request):
+    #Recupera listas en el html. Como ejecutar codigo python en plantillas html
+    nombres = ["Carlos", "Paco", "Alejandro"]
+    doc_externo = open("C:/Users/Alejandro Alonso/OneDrive - Alejandro/Escritorio/Desarrollo/Python/Django/Proyect1/Proyect1/templates/prueba_eight.html")
+    plt = Template(doc_externo.read())
+    doc_externo.close()
+    ctx = Context({"nombres":nombres})
+    documento = plt.render(ctx)
+    return HttpResponse(documento)
+
+#Loader cargador de plantillas reduce el codigo
+#Configurar file settings with templates
+
+from django.template import loader
+
+'''
+Ahora con la funcion loader nos permite acceder a la plantilla indicando unicamente el archivo ya que hemos indicado el path en el archivo settings.
+Para añadir el contexto ya no es necesario llamar a context sino que podemos pasar como contexto un diccionario directamente.
+ '''
+def prueba_nine(request):
+    nombres = ["Carlos", "Paco", "Alejandro"]
+    doc_externo = loader.get_template('prueba_nine.html')
+    ctx = {"nombres":nombres}
+    documento = doc_externo.render(ctx)
+    return HttpResponse(documento)
+
+#Render Simplifica aun mas el codigo
+
+from django.shortcuts import render
+def prueba_ten(request):
+    nombres = ["Carlos", "Paco", "Alejandro"]
+    return render(request, "prueba_ten.html", {"nombres":nombres})
+
+#Plantillas incrustadas se declara en el html
+#Para plantillas incrustadas generar subdirectorios dentro de templates y asi organizar todas las plantillas.
+def plantilla_incrustada(request):
+    return render(request, "principal.html")
+
+#Herencia de plantillas-- Si en la pagina web la cabecerla y el pie de pagina se mantiene
+#Creamos una plantilla padre con la cabecera y el pie pero que se modifique el contenido de las paginas para cada una de ellas.
+#Tener en cuenta que hay que llamar al contenido y no al padre.
+def herencias_html(request):
+    return render(request, "contenido.html")

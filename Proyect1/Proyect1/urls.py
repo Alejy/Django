@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Proyect1.views import prueba, prueba_two, prueba_three, prueba_four, prueba_five, prueba_six, prueba_seven
+from Proyect1.views import prueba, prueba_two, prueba_three, prueba_four, prueba_five, prueba_six, prueba_seven, prueba_eight, prueba_nine, prueba_ten, plantilla_incrustada, herencias_html
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,9 @@ urlpatterns = [
     path('prueba_five/', prueba_five),
     path('prueba_six/', prueba_six),
     path('prueba_seven/', prueba_seven),
+    path('prueba_eight/', prueba_eight),
+    path('prueba_nine/', prueba_nine),
+    path('prueba_ten/', prueba_ten),
+    path('plantilla_incrustada/', plantilla_incrustada),
+    path('herencias_html/', herencias_html),
 ]

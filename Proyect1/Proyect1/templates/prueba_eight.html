@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>{{nombres.0}}</p>
+    <p>{{nombres.1}}</p>
+    <p>{{nombres.2}}</p>
+
+    {#Esto es un comentario de una linea.#}
+    {% comment %}
+    Esto es un comentario 
+    de varias lineas
+    {% endcomment %}
+    
+    <h2>
+        <ul>
+        <!--Ejecutamos codigo python en un archivo html en este caso indicamos un bucle que nos permite iterar cada elemento de la lista siempre que esta lista exista.
+        Si esta no existe indica que no hay nada que mostrar.-->
+        {% if nombres%}
+        {% for i in nombres %}
+        <!--Tambien se puede ejecutar codigo python para modificar el contenido de las variables en este caso pone el str en mayuscula-->
+        <li>
+            <p>{{i.upper}}</p>
+        </li>    
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>No hay nada que mostrar</p>
+        {% endif %}
+    </h2>
+</body>
+</html>
